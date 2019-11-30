@@ -1,0 +1,39 @@
+<?php
+
+namespace App\Http\Requests;
+
+use Illuminate\Foundation\Http\FormRequest;
+
+class soumissionRequest extends FormRequest
+{
+    /**
+     * Determine if the user is authorized to make this request.
+     *
+     * @return bool
+     */
+    public function authorize()
+    {
+        return true;
+    }
+
+    /**
+     * Get the validation rules that apply to the request.
+     *
+     * @return array
+     */
+    public function rules()
+    {
+        return [
+
+            'name' => 'required|string|max:50|min:3',
+            'email' => 'required|string|email|max:255|unique:users',
+            'numero' => 'required|digits:10',
+            'nom' => 'required | min:3 |max:50|unique:projets,title',
+            'description' => 'required | min:10 |max:225 ',
+            'fichierR' => 'required | max:20000 | mimes:pdf,PDF,doc,docx',
+            'soustype' => 'required',
+            'type' => 'required'
+            //
+        ];
+    }
+}
